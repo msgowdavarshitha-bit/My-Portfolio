@@ -1592,3 +1592,83 @@ footer {
         min-height: auto;
     }
 }
+.featured-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.featured-card{ 
+    background:rgba(255,255,255,.08); 
+    backdrop-filter:blur(15px); 
+    padding:30px;
+    border-radius:20px; 
+    text-align:center; 
+    transition:.4s; 
+    border:1px solid rgba(255,255,255,.1);
+ }
+
+.featured-card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.featured-card i{
+font-size:45px;
+color:#f4c542;
+margin-bottom:20px;
+}
+
+.featured-card h3{
+margin-bottom:15px;
+font-size:22px;
+}
+
+.featured-card p{
+line-height:1.7;
+}
+.achievement-banner{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 35px;
+    padding: 12px 24px;
+
+    background: transparent;
+    border: 2px solid #D4AF37; /* Elegant Gold */
+    border-radius: 50px;
+
+    color: #D4AF37;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.achievement-banner:hover{
+    background: rgba(212,175,55,0.08);
+    box-shadow: 0 0 12px rgba(212,175,55,0.35);
+}
+
+.achievement-icon{
+    font-size: 26px;
+    color: #D4AF37;
+}
+
+
+
+@keyframes floatBadge{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}

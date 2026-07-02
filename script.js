@@ -167,6 +167,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
 });
 
+function openModal(file) {
+
+    const modal = document.getElementById("cert-modal");
+    const iframe = document.getElementById("modal-iframe");
+
+    if (file.endsWith(".png") || file.endsWith(".jpg") || file.endsWith(".jpeg")) {
+        iframe.src = "";
+        iframe.srcdoc = `
+            <html>
+            <body style="margin:0;display:flex;justify-content:center;align-items:center;background:white;">
+                <img src="${file}" style="max-width:100%;max-height:100vh;">
+            </body>
+            </html>
+        `;
+    } else {
+        iframe.removeAttribute("srcdoc");
+        iframe.src = file;
+    }
+
+    modal.style.display = "flex";
+}
 // Add CSS animations dynamically
 const style = document.createElement('style');
 style.textContent = `
