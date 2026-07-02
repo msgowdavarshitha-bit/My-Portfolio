@@ -64,26 +64,42 @@ document.querySelectorAll('.about-content, .experience-card, .project-card, .tim
     observer.observe(el);
 });
 
+
 // Modal for certificates
-function openModal(certFile) {
-    console.log('Opening certificate:', certFile);
-    const modal = document.getElementById('cert-modal');
-    const iframe = document.getElementById('modal-iframe');
-    if (!modal || !iframe) {
-        console.error('Modal elements not found!');
-        return;
-    }
-    
-    let filePath;
-    if (certFile.includes('Resume')) {
-        filePath = certFile;
+function openModal(file) {
+
+    const modal = document.getElementById("cert-modal");
+    const iframe = document.getElementById("modal-iframe");
+
+    modal.style.display = "flex";
+
+    if (
+        file.toLowerCase().endsWith(".png") ||
+        file.toLowerCase().endsWith(".jpg") ||
+        file.toLowerCase().endsWith(".jpeg")
+    ) {
+
+        iframe.removeAttribute("src");
+
+        iframe.srcdoc = `
+            <html>
+            <body style="margin:0;display:flex;justify-content:center;align-items:center;background:white;">
+                <img src="${file}" style="max-width:100%;max-height:100%;object-fit:contain;">
+            </body>
+            </html>
+        `;
+
     } else {
-        filePath = `Certificates/${encodeURIComponent(certFile)}`;
+
+        iframe.removeAttribute("srcdoc");
+
+        if (!file.includes("Certificates/")) {
+            file = "Certificates/" + file;
+        }
+
+        iframe.src = file;
     }
-    
-    console.log('File path:', filePath);
-    iframe.src = filePath;
-    modal.style.display = 'flex';
+
 }
 
 function closeModal() {
@@ -167,27 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
 });
 
-function openModal(file) {
 
-    const modal = document.getElementById("cert-modal");
-    const iframe = document.getElementById("modal-iframe");
-
-    if (file.endsWith(".png") || file.endsWith(".jpg") || file.endsWith(".jpeg")) {
-        iframe.src = "";
-        iframe.srcdoc = `
-            <html>
-            <body style="margin:0;display:flex;justify-content:center;align-items:center;background:white;">
-                <img src="${file}" style="max-width:100%;max-height:100vh;">
-            </body>
-            </html>
-        `;
-    } else {
-        iframe.removeAttribute("srcdoc");
-        iframe.src = file;
-    }
-
-    modal.style.display = "flex";
-}
 // Add CSS animations dynamically
 const style = document.createElement('style');
 style.textContent = `
